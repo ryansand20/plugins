@@ -58,9 +58,12 @@ public class WintertodtIdlePlugin extends Plugin {
 
 				toggleOverlay(true);
 			}
-		} else if (isOverlayShown) {
+		} else {
 			this.lastActionTime = null;
-			toggleOverlay(false);
+
+			if (isOverlayShown) {
+				toggleOverlay(false);
+			}
 		}
 	}
 
@@ -103,10 +106,10 @@ public class WintertodtIdlePlugin extends Plugin {
 	private boolean isIdleTimerMet() {
 		boolean isIdleTimerMet = false;
 
-		if(config.idleDelay() > 0 && lastActionTime != null) {
+		if (config.idleDelay() > 0 && lastActionTime != null) {
 			Duration actionTimeout = Duration.ofSeconds(config.idleDelay());
 			Duration sinceAction = Duration.between(lastActionTime, Instant.now());
-			
+
 			if (sinceAction.compareTo(actionTimeout) >= 0) {
 				log.debug("Now idle!");
 				isIdleTimerMet = true;
