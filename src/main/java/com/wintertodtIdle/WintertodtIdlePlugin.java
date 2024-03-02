@@ -59,6 +59,7 @@ public class WintertodtIdlePlugin extends Plugin {
 				toggleOverlay(true);
 			}
 		} else if (isOverlayShown) {
+			this.lastActionTime = null;
 			toggleOverlay(false);
 		}
 	}
